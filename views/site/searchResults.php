@@ -3,84 +3,59 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'Results';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-
 <div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-<p>
-<? if ($results) {
+    <h1><? Html::encode($this->title) ?></h1>
 
-  for($i=0; $i < count($results); $i ++)
+
+<?
+
+if ($results) {
+
+  for($i=0; $i < count($results); $i++)
   {
+  //  var_dump($results[$i]);
 
-  //   echo "<pre>";
-  //
-  // var_dump ( $results[$i]);
-  //
-  // echo "</pre>";
+?>
+<div class="row" id="result" >
 
-  echo 'Product Name: ' ; echo $results[$i]["ProductName"];
-  echo '</br>';
-  echo 'Product Price: ' ; echo $results[$i]["ProductPrice"];
-  echo '</br>';
-
-  echo 'Product Desc: ' ; echo $results[$i]["ProductCartDesc"];
-  echo '</br>';
-  echo 'Product Thumb: ' ; echo $results[$i]["ProductThumb"];
+    <!-- "Follow the White Rabbit" -Alice in Wonderland -->
+  <a href=<?php echo Url::to(['products/product/'.$results[$i]["ProductID"]]) ?>>
+    <!-- "Follow the White Rabbit" -Alice in Wonderland -->
 
 
-  echo '<div class="row">
-  <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-      <img src="'.$results[$i]["ProductThumb"].'" alt="...">
-    </a>
+
+
+    
+
+    <div class="col-md-4" >
+      <img class="img-responsive" src="<? echo $results[$i]["ProductThumb"];?>" style="width:256px;height:256px; border: 1px solid grey;">
+
+    </div>
+    <!-- ProductID -->
+
+    <div class="col-md-8 ">
+      <h4> <? echo 'Product Name: ' ; echo $results[$i]["ProductName"]; ?>  </h4>
+      <p>  <?  echo 'Product Price: ' ; echo $results[$i]["ProductPrice"]; ?>  </p>
+      <p>  <?  echo 'Product Desc: ' ; echo $results[$i]["ProductCartDesc"]; ?>  </p>
+    </div>
+
+  </a>
   </div>
-  ...
-</div>';
+
+  <br><br>
+
+
+
+<?
   }
-
-
-//   echo "<pre>";
-//
-// var_dump ( $results);
-//
-// echo "</pre>";
-//
-//
-//
-//   var_dump($results);
-//
-// echo "</br>";
-// echo "</br>";
-//
-// echo "</br>";
-//
-//   var_dump($results[0]);
-//
-//   echo "</br>";
-//   echo "</br>";
-//
-//   echo "<pre>";
-//
-// var_dump ( $results[0]["ProductID"]);
-//
-// echo "</pre>";
-//
-//
-// echo  $results[0]["ProductID"];
-
-
-  // foreach($results as $obj)
-  // {
-  //   echo $obj->ProductName;
-  //   // echo $obj->image;
-  // }
-} ?>
-</p>
+}
+ ?>
 
 </div>
